@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 1 Q3</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="icon" href="../static/ART_Logo.svg" type="image/x-icon" class="favicon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,300;1,700&display=swap"
+          rel="stylesheet">
+    <style>
+        :root {
+            --main-background-color: rgb(26, 26, 39);
+            --header-background-color: rgb(0, 36, 44.8);
+            --font-family: 'Open Sans', Helvetica;
+            font-family: var(--font-family), sans-serif;
+            --searchbar-color: #444444;
+            --accent-color: #e3c85a;
+            --link-color: #5aa5e3;
+            --text-color: #e5e5e5;
+            --placeholder-color: #a2a2a2;
+            --minor-container-color: rgba(1, 63, 80, 0.8);
+            --confirm-color: #308868;
+            --table-color: rgba(0, 36, 44.8, 0.2);
+            --border-color: #fff4; /*Do you see any borders from here?*/
+            --failure-color: #e50000;
+        }
+
+        body {
+            color: var(--text-color);
+            margin: 0;
+            line-height: normal;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            font-weight: lighter;
+            text-decoration: none;
+            background-color: var(--main-background-color);
+            font-family: var(--font-family), sans-serif;
+        }
+
+        .company_title {
+            text-decoration: none;
+        }
+
+        h1 {
+            color: var(--text-color);
+            font-weight: 200;
+            /*margin-top: 24px;*/
+            /*margin-bottom: 24px;*/
+            text-decoration: none;
+            line-height: normal;
+            margin-right: 1px;
+        }
+
+        h2 {
+            color: var(--text-color);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        h3 {
+            font-weight: 400;
+            font-style: italic;
+            font-size: 1.3em;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        h4 {
+            font-weight: 600;
+            font-style: italic;
+            font-size: 1.2em;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        h5 {
+            font-weight: 500;
+            font-size: 1.1em;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        #header {
+            padding: 0 32px 0 16px;
+            background-color: var(--header-background-color);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            box-shadow: 0 2px 8px #000f;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            color: var(--text-color);
+            text-decoration: none;
+            width: 100%;
+        }
+
+        #header h1, #header h2, #header h3, #header strong {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        #menu-label {
+            min-width: 4.25em;
+            text-decoration: none;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flex > * {
+            width: 0;
+            flex-grow: 1;
+            min-width: min-content;
+        }
+
+        #menu-label {
+            min-width: 4.25em;
+            text-decoration: none;
+        }
+
+        .icon, .material-icons {
+            vertical-align: middle;
+            text-decoration: none;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            min-width: 128px;
+            text-decoration: none;
+        }
+
+        .menu > * {
+            margin-right: 16px;
+        }
+
+        .nowrap {
+            display: inline-block;
+            white-space: nowrap;
+            align-items: center;
+            vertical-align: middle;
+            text-decoration: none;
+
+        }
+
+        .headerlink {
+            display: inline-block;
+            white-space: nowrap;
+            align-items: center;
+            vertical-align: middle;
+            text-decoration: none;
+        }
+
+        .searchbar, .material-icons, .icon {
+            vertical-align: middle;
+            text-decoration: none;
+
+        }
+
+        .icon, .material-icons, .header-link {
+            color: var(--accent-color);
+        }
+
+        .icon {
+            height: 2em;
+            width: 2em;
+        }
+
+        input[type=text], input[type=number], input[type=password], input[type=tel], select {
+            padding: 6px 16px;
+            border: none; /*What have borders given us?*/
+            /*margin-top: 8px;*/
+            font-family: var(--font-family), sans-serif;
+            font-size: 17px;
+            vertical-align: middle;
+            border-radius: 25px;
+            background-color: var(--searchbar-color);
+            color: var(--text-color);
+        }
+
+        .searchbar {
+            float: right;
+            margin-right: 16px;
+        }
+
+        .feedback {
+            float: right;
+            padding: 6px 16px;
+            border: none; /*So, have you found your reason to fight yet? Buddy.*/
+            font-size: 17px;
+            vertical-align: middle;
+            border-radius: 16px;
+            background-color: var(--searchbar-color);
+            color: var(--text-color);
+            font-family: var(--font-family), sans-serif;
+            resize: none;
+        }
+
+        .header-link, .menu-label {
+            border: none; /*We're going to start over from scratch.*/
+            outline: none;
+            text-decoration: none;
+        }
+
+
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: var(--placeholder-color);
+            opacity: 1; /* Firefox */
+        }
+
+        .flex-grow {
+            flex-grow: 0.9;
+        }
+
+        .company_subtitle {
+            display: inline-block;
+            white-space: nowrap;
+            align-items: center;
+            vertical-align: middle;
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 1100px) {
+            .company_subtitle {
+                display: none !important;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .searchbar {
+                width: 50%;
+                margin-top: 16px;
+                margin-bottom: 16px;
+            }
+
+            .flex input[type=text] {
+                padding: 6px;
+            }
+
+            .company_title {
+                font-size: 10px;
+            !important;
+            }
+
+            .content, .form {
+                padding: 10px;
+            }
+        }
+
+        .content, .form {
+            padding: 40px;
+
+        }
+
+        @media screen and (max-width: 1000px) {
+            .header-link {
+                display: none !important;
+            }
+
+            .content, .form {
+                padding: 30px;
+            }
+        }
+
+        html, body {
+            background-color: var(--main-background-color);
+        }
+
+        .flexvert {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .username, .password, .name, .email {
+            width: 80%;
+            margin-top: 32px;
+            height: 32px;
+            max-width: 450px;
+
+        }
+
+        .feedback {
+            width: 80%;
+            margin-top: 32px;
+            height: 320px;
+            max-width: 450px;
+        }
+
+        .fieldlabel {
+            font-size: 1.2em;
+            color: var(--text-color);
+            text-decoration: none;
+            margin-top: 32px;
+        }
+
+        button {
+            margin-top: 32px;
+            color: var(--text-color);
+            padding: 14px 20px;
+            border: none; /*That's what V2 is for.*/
+            cursor: pointer;
+            width: 80%;
+            border-radius: 25px;
+            max-width: 450px;
+            margin-bottom: 32px;
+            font-family: var(--font-family), sans-serif;
+        }
+
+        .activatedbutton {
+            background-color: var(--minor-container-color)
+        }
+
+        .deactivatedbutton {
+            background-color: var(--searchbar-color)
+        }
+
+        .loginbutton {
+            background-color: var(--confirm-color);
+        }
+
+        .deletebutton {
+            background-color: var(--failure-color);
+        }
+
+        .checkbox {
+            margin-bottom: 32px;
+        }
+
+        .container {
+            padding: 16px;
+            width: 80%;
+            background-color: var(--minor-container-color);
+            margin: 0 auto;
+            border-radius: 30px;
+            align-items: center;
+            justify-content: center;
+            max-width: 450px;
+            text-align: center;
+        }
+
+
+        a {
+            color: var(--link-color);
+        }
+
+        object {
+            pointer-events: none;
+        }
+
+        table.contenttable {
+            background-color: var(--table-color);
+            /*text-align: left;*/
+            border-collapse: collapse; /*<<IT'S TIME.>>*/
+        }
+
+        table.contenttable tr {
+            border: solid 1px var(--border-color); /*We'll start over from scratch with this V2 and entrust the future to the next generation.*/
+            font-size: 18px;
+        }
+
+        table.contenttable th, td {
+            padding: 5px;
+            /*border: solid 1px var(--border-color); /*We'll start over from scratch with this V2 and entrust the future to the next generation.*/
+        }
+
+        table.contenttable th {
+            background-color: var(--header-background-color);
+        }
+
+        table {
+            margin-bottom: 32px;
+        }
+
+        .failureMsg {
+            color: var(--failure-color);
+            align-self: center;
+        }
+
+        .consolelink {
+            display: inline-block;
+            white-space: nowrap;
+            align-items: center;
+            vertical-align: middle;
+            text-decoration: none;
+            padding-top: 32px;
+            font-size: 32px;
+            color: var(--accent-color);
+        }
+
+        .consolevert {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: column;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="flex" id="header">
+    <div class="menu" id="menu">
+        <a>
+            <object class="icon" data="../static/ART_Logo.svg" id="logo" type="image/svg+xml"></object>
+        </a>
+        <a class="company_title">
+            <h1 id="menu-label">CS6132 Assignment 1</h1>
+        </a>
+        <div class="flex-grow"></div>
+
+
+    </div>
+</div>
+<script>
+    function dec2bin(dec) {
+        return (dec >>> 0).toString(2);
+    }
+
+    function padByte(n) {
+        return ("0".repeat(8)).substr(n.length) + n;
+    }
+
+    function padAddress(n) {
+        return ("0".repeat(32)).substr(n.length) + n;
+    }
+
+    function ipv4_to_dec(ipv4_1, ipv4_2, ipv4_3, ipv4_4) {
+        return ipv4_1 * (2 ** 24) + ipv4_2 * (2 ** 16) + ipv4_3 * (2 ** 8) + ipv4_4;
+    }
+
+    function ipv4_subnet(address_dec, prefix) {
+        const ipv4_subnetMask = parseInt("1".repeat(prefix) + "0".repeat(32 - prefix), 2);
+        const ipv4_firstAddress = address_dec & ipv4_subnetMask;
+        const ipv4_secondAddress = ipv4_firstAddress | parseInt("1".repeat(32 - prefix), 2);
+        return [ipv4_firstAddress, ipv4_secondAddress];
+    }
+
+    function ipv4_address_formatter(input) {
+        const ipv4_addressBits = padAddress(dec2bin(input))
+        const ipv4_addressArray = ipv4_addressBits.match(/.{1,8}/g);
+        let ipv4_address = "";
+        for (const byte of ipv4_addressArray) {
+            ipv4_address += (parseInt(byte, 2) + ".")
+        }
+        return ipv4_address.substring(0, ipv4_address.length - 1)
+    }
+
+    function allocate_addresses(base_address, address_size, number_of_organisations) {
+        let running_base = base_address;
+        let addresses_list = [];
+        for (let i = 0; i < number_of_organisations; i++) {
+            //man
+            console.log("organisation " + i);
+            console.log("start from " + running_base);
+            addresses_list.push([running_base, running_base + address_size - 1]);
+            running_base += address_size;
+            console.log("end at " + running_base - 1);
+        }
+        return addresses_list;
+    }
+</script>
+
+<div class="content" id="content">
+    <h1 class="title">Assignment 1</h1>
+    <h3 class="subtitle">Question 3(c)</h3>
+    <p>(i) Find the first and last address in a block given any address in the block.</p>
+    <div>
+        <script>
+            function imposeMax(el) {
+                if (el.value != "") {
+                    if (parseInt(el.value) > parseInt(el.max)) {
+                        el.value = el.max;
+                    }
+                    if (parseInt(el.value) < parseInt(el.min)) {
+                        el.value = el.min;
+                    }
+                }
+            }
+        </script>
+        <table>
+            <tr>
+                <td><span class="fieldlabel"><b>IPv4:</b></span></td>
+                <td><input id="ipv4_1" placeholder="0" size="3" maxlength="3" max="255" required type="tel"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                           onkeyup="imposeMax(this);updateIpv4Output();"></td>
+                <td>.</td>
+                <td><input id="ipv4_2" placeholder="0" size="3" maxlength="3" max="255" required type="tel"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                           onkeyup="imposeMax(this);updateIpv4Output();"></td>
+                <td>.</td>
+                <td><input id="ipv4_3" placeholder="0" size="3" maxlength="3" max="255" required type="tel"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                           onkeyup="imposeMax(this);updateIpv4Output();"></td>
+                <td>.</td>
+                <td><input id="ipv4_4" placeholder="0" size="3" maxlength="3" max="255" required type="tel"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                           onkeyup="imposeMax(this);updateIpv4Output();"></td>
+                <td>/</td>
+                <td><input id="ipv4_5" placeholder="32" size="2" maxlength="2" max="32" required type="tel"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                           onkeyup="imposeMax(this);updateIpv4Output();"></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><span class="fieldlabel"><b>First address:</b></span></td>
+                <td><input size="15" id="ipv4_output_1" type="text" readonly></td>
+            </tr>
+            <tr>
+                <td><span class="fieldlabel"><b>Last address:</b></span></td>
+                <td><input size="15" id="ipv4_output_2" type="text" readonly></td>
+            </tr>
+        </table>
+        <script>
+            function updateIpv4Output() {
+                const ipv4_1 = parseInt(document.getElementById("ipv4_1").value, 10) || 0;
+                const ipv4_2 = parseInt(document.getElementById("ipv4_2").value, 10) || 0;
+                const ipv4_3 = parseInt(document.getElementById("ipv4_3").value, 10) || 0;
+                const ipv4_4 = parseInt(document.getElementById("ipv4_4").value, 10) || 0;
+                const prefix = parseInt(document.getElementById("ipv4_5").value, 10) || 32;
+                const baseSubnet = ipv4_subnet(ipv4_to_dec(ipv4_1, ipv4_2, ipv4_3, ipv4_4), prefix);
+                document.getElementById("ipv4_output_1").value = ipv4_address_formatter(baseSubnet[0]);
+                document.getElementById("ipv4_output_2").value = ipv4_address_formatter(baseSubnet[1]);
+
+                let number_of_fields = parseInt(document.getElementById("org_size_no").value, 10) || 1;
+                let start_address=baseSubnet[0];
+                let organisations = [];
+                for (let i = 0; i < number_of_fields; i++) {
+                    const no_of_organisations = parseInt(document.getElementById("org_no_" + i).value, 10) || 1;
+                    const org_addr = parseInt(document.getElementById("org_addr_" + i).value, 10) || 2;
+                    let org_bits = dec2bin(org_addr - 1).length;
+                    let org_no_roof = 2 ** org_bits;
+                    for (let j=0;j<no_of_organisations;j++){
+                        organisations.push([start_address,start_address+org_no_roof-1, org_no_roof]);
+                        start_address+=org_no_roof;
+                    }
+                }
+                let table = document.getElementById("table4");
+                while (table.hasChildNodes()) {
+                    table.removeChild(table.lastChild);
+                }
+                let lastAllocatedAddress=organisations[organisations.length-1][1];
+                if (lastAllocatedAddress>baseSubnet[1]){
+                    add_row_text_to_table(table, "Not enough addresses available!");
+                }else{
+                    let k=0;
+                    for (const org of organisations){
+                        add_row_text_to_table(table, "Organisation "+k+": "+ipv4_address_formatter(org[0])+" to "+ipv4_address_formatter(org[1])+", "+org[2]+" addresses");
+                        k++;
+                    }
+                    if(lastAllocatedAddress==baseSubnet[1]){
+                        add_row_text_to_table(table, "No unallocated addresses");
+                    }else{
+                        add_row_text_to_table(table, "Unallocated addresses: "+ipv4_address_formatter(lastAllocatedAddress+1)+" to "+ipv4_address_formatter(baseSubnet[1]));
+                    }
+                }
+            }
+            function add_row_text_to_table(table, text){
+                let row = document.createElement("tr");
+                table.appendChild(row);
+                let column1 = document.createElement("td");
+                row.appendChild(column1);
+                let label = document.createElement("span");
+                label.class = "fieldlabel";
+                label.innerHTML = text;
+                column1.appendChild(label);
+            }
+        </script>
+    </div>
+    <p>(ii) Find the range of addresses for each organisation and the range of unallocated addresses.</p>
+    <div>
+        <table id="table2">
+            <tr>
+                <td><span class="fieldlabel">Number of organisation sizes:</span></td>
+                <td><input id="org_size_no" placeholder="1" size="2" maxlength="2" min="1" max="20" required
+                           type="number"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                           onchange="imposeMax(this);add_table_fields();updateIpv4Output();"
+                           onkeyup="imposeMax(this);add_table_fields();updateIpv4Output();"></td>
+            </tr>
+        </table>
+        <table id="table3">
+
+        </table>
+        <script>
+            function add_table_fields() {
+                let number_of_fields = parseInt(document.getElementById("org_size_no").value, 10) || 1;
+                let table = document.getElementById("table3");
+                while (table.hasChildNodes()) {
+                    table.removeChild(table.lastChild);
+                }
+                for (let i = 0; i < number_of_fields; i++) {
+                    let row = document.createElement("tr");
+                    table.appendChild(row);
+                    let column1 = document.createElement("td");
+                    row.appendChild(column1);
+                    let label = document.createElement("span");
+                    label.class = "fieldlabel";
+                    label.innerHTML = "Number of organisations: ";
+                    column1.appendChild(label);
+                    let input = document.createElement("input");
+                    input.id = "org_no_" + i;
+                    input.placeholder = "1";
+                    input.size = "10";
+                    input.maxlength = "10";
+                    input.min="1";
+                    input.max = "1000";
+                    input.type = "tel";
+                    input.oninput = function () {
+                        this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');
+                    };
+                    input.onkeyup = function () {
+                        imposeMax(this);
+                        updateIpv4Output();
+                    };
+                    let column2 = document.createElement("td");
+                    row.appendChild(column2);
+                    column2.appendChild(input);
+                    let column3 = document.createElement("td");
+                    row.appendChild(column3);
+                    let label2 = document.createElement("span");
+                    label2.class = "fieldlabel";
+                    label2.innerHTML = "Number of addresses needed: ";
+                    column3.appendChild(label2);
+                    let column4 = document.createElement("td");
+                    row.appendChild(column4);
+                    let input2 = document.createElement("input");
+                    input2.id = "org_addr_" + i;
+                    input2.placeholder = "2";
+                    input2.size = "10";
+                    input2.maxlength = "10";
+                    input2.min = "1";
+                    input2.max = "4294967296";
+                    input2.type = "tel";
+                    input2.oninput = function () {
+                        this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');
+                    };
+                    input2.onkeyup = function () {
+                        imposeMax(this);
+                        updateIpv4Output();
+                    };
+                    column4.appendChild(input2);
+                }
+            }
+        </script>
+        <table id="table4">
+
+        </table>
+    </div>
+
+</div>
+<script>
+    add_table_fields();
+</script>
+<script>
+    updateIpv4Output();
+</script>
+
+
+</body>
+</html>
